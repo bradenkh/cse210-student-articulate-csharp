@@ -11,6 +11,8 @@ namespace Unit05.Game.Casting
     public class Cycle : Actor
     {
         private List<Actor> segments = new List<Actor>();
+        private Color color = Constants.WHITE;
+        private Boolean isAlive = true;
 
         /// <summary>
         /// Constructs a new instance of a Cycle.
@@ -64,7 +66,7 @@ namespace Unit05.Game.Casting
                 segment.SetPosition(position);
                 segment.SetVelocity(velocity);
                 segment.SetText("#");
-                segment.SetColor(Constants.GREEN);
+                segment.SetColor(color);
                 segments.Add(segment);
             }
         }
@@ -100,6 +102,9 @@ namespace Unit05.Game.Casting
         /// </summary>
         private void PrepareBody(int player)
         {
+            //define body color
+            color = player == 1 ? Constants.RED : Constants.YELLOW;
+
             int x = Constants.MAX_X / 2;
             int y = 0;
 
@@ -117,8 +122,8 @@ namespace Unit05.Game.Casting
             {
                 Point position = new Point(x - i * Constants.CELL_SIZE, y);
                 Point velocity = new Point(1 * Constants.CELL_SIZE, 0);
-                string text = i == 0 ? "8" : "#";
-                Color color = i == 0 ? Constants.YELLOW : Constants.GREEN;
+                string text = "#";
+                
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);
@@ -127,6 +132,12 @@ namespace Unit05.Game.Casting
                 segment.SetColor(color);
                 segments.Add(segment);
             }
+        }
+
+        public void Kill()
+        {
+            color = Constants.WHITE;
+            isAlive = false;
         }
     }
 }

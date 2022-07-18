@@ -80,6 +80,8 @@ namespace Unit05.Game.Scripting
 
             Cycle Cycle2 = (Cycle)cast.GetFirstActor("Cycle2");
             Cycle2.TurnHead(direction2);
+            Cycle1.GrowTail(1);
+            Cycle2.GrowTail(1);
 
         }
 
